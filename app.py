@@ -36,7 +36,7 @@ def edit(id):
 def update(id):
     pass
 
-@app.route("/puppies/<id>", methods=["DESTROY"])
+@app.route("/puppies/<id>", methods=["DELETE"])
 def destroy(id):
     pass
 
