@@ -17,6 +17,12 @@ All the puppies!
         <td>{{puppy.name}}</td>
         <td>{{puppy.age}}</td>
         <td>{{puppy.breed}}</td>
+        <td>
+            <form action="{{ url_for('update_or_delete',id=puppy.id) }}" method="POST">
+                <input type="hidden" name="_method" value="DELETE" />
+                <button type="submit" class="btn btn-primary">Delete</button>
+            </form>
+        </td>
     </tr>
     {% endfor %}
     </th>
