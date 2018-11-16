@@ -1,4 +1,12 @@
 {% extends "_base.html" %}
+{% block title %}
+Home
+{% endblock %}
 {% block content %}
+{% if puppy_name %}
+<p> <strong> Thanks for adding {{puppy_name}} </strong></p>
+{% endif %}
 <h1>Welcome to Puppies Central</h1>
+<br>
+<a href="{{ url_for('new') }}" class="btn">Add a new puppy</a>
 {% endblock %}
