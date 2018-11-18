@@ -4,9 +4,10 @@ Home
 {% endblock %}
 {% block content %}
 {% if puppy_name %}
-<p> <strong> Thanks for adding {{puppy_name}} </strong></p>
+<h2>Thanks for adding {{puppy_name}}!</h2>
 {% endif %}
 <h1>Welcome to Puppies Central</h1>
 <br>
-<a href="{{ url_for('new') }}" class="btn">Add a new puppy</a>
+<a href="{{ url_for('new') }}" class="btn btn-primary">Add a new puppy!</a>
+<a href="{{ url_for('index') }}" class="btn btn-primary">Check out all the puppies!</a>
 {% endblock %}

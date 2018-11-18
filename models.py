@@ -9,8 +9,6 @@ class Puppy(db.Model):
     name = db.Column(db.Text)
     age = db.Column(db.Integer)
     breed = db.Column(db.Text)
-    fur_color = db.Column(db.Text)
-    gender = db.Column(db.Text)
 
     def __init__(self, name, age, breed):
         self.name = name

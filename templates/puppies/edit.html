@@ -4,8 +4,8 @@ Puppy Editor!
 {% endblock %}
 {% block content %}
 <h1>Edit a Puppy</h1>
-<form action="{{ url_for('update',id=puppy.id) }}" method="POST">
-  <input type="hidden" name="_method" value="PUT" />
+<form action="{{ url_for('update_or_destroy',id=puppy.id) }}" method="POST">
+  <input type="hidden" name="_method" value="PUT">
   <div class="form-group">
     <label for="name">Name:</label>
     <input type='text' value="{{puppy.name}}" name='name' class="form-control" />

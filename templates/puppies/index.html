@@ -10,6 +10,8 @@ All the puppies!
         <th style="text-align: center">Name</th>
         <th style="text-align: center">Age</th>
         <th style="text-align: center">Breed</th>
+        <th style="text-align: center">Edit!</th>
+        <th style="text-align: center">DELETE!</th>
     </tr>
     {% for puppy in puppies %}
     <tr>
@@ -18,9 +20,15 @@ All the puppies!
         <td>{{puppy.age}}</td>
         <td>{{puppy.breed}}</td>
         <td>
-            <form action="{{ url_for('update_or_delete',id=puppy.id) }}" method="POST">
-                <input type="hidden" name="_method" value="DELETE" />
-                <button type="submit" class="btn btn-primary">Delete</button>
+            <form action="{{ url_for('edit',id=puppy.id) }}" method="GET">
+                <input type="hidden" name="_method" value="PUT">
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </form>
+        </td>
+        <td>
+            <form action="{{ url_for('update_or_destroy',id=puppy.id) }}" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-primary">DELETE</button>
             </form>
         </td>
     </tr>
@@ -28,4 +36,7 @@ All the puppies!
     </th>
 
 </table>
+<br>
+<a href="{{ url_for('home') }}" class="btn btn-primary">Home</a>
+
 {% endblock %}

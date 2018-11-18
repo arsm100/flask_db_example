@@ -1,10 +1,11 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from database import db, app
 from models import Puppy
 
 
 @app.route("/")
-def home(puppy_name=None):
+def home():
+    puppy_name = request.args.get('puppy_name')
     return render_template('home.html', puppy_name=puppy_name)
 
 
@@ -23,9 +24,7 @@ def create():
     db.session.add(new_puppy)
     db.session.commit()
 
-    # Implement your code to create a new Puppy object and then save it to DB.
-
-    return home(new_puppy.name)
+    return redirect(url_for('home', puppy_name=new_puppy.name))
 
 
 @app.route("/puppies", methods=["GET"])
@@ -47,20 +46,21 @@ def edit(id):
 
 
 @app.route("/puppies/<id>", methods=["POST"])
-def update_or_delete(id):
-    if request.form.get("_method") == 'PUT':
+def update_or_destroy(id):
+    if request.form.get('_method') == 'PUT':
         editted_puppy = Puppy.query.get(id)
         editted_puppy.name = request.form.get('name')
         editted_puppy.age = request.form.get('age')
         editted_puppy.breed = request.form.get('breed')
         db.session.add(editted_puppy)
         db.session.commit()
-        return redirect(url_for('home'))
-    elif request.form.get("_method") == "DELETE":
+        return redirect(url_for('home', puppy_name=editted_puppy.name))
+    elif request.form.get('_method') == 'DELETE':
         pup = Puppy.query.get(id)
         db.session.delete(pup)
         db.session.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('index', puppy_name=pup.name))
+
 
 if __name__ == '__main__':
     app.run()
